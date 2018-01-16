@@ -1,6 +1,8 @@
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 14px;
   text-rendering: optimizeLegibility;
+  background: #fafafa;
 }
 
 .ma-header {
@@ -16,10 +18,30 @@ body {
 
 .ma-menu {
   top: 60px;
-  width: 270px;
+  width: 200px;
   height: calc(100vh - 60px);
   position: fixed;
   left: 0;
+}
+
+.ma-menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.ma-menu-item {
+  line-height: 40px;
+}
+
+.ma-menu-item a {
+  line-height: 40px;
+  padding: 12px 75px;
+}
+
+.ma-menu-item a.active {
+  background-color: #fff9c4;
+  border-left: 5px solid #f57f17;
+  font-weight: 600;
 }
 
 .ma-app-container {
@@ -28,4 +50,25 @@ body {
   margin-top: 60px;
   left: 200px;
   top: 60px;
+}
+
+.ma-card-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.ma-card {
+  list-style: none;
+  max-width: 20%;
+  margin: 5px;
+}
+
+.ma-card img {
+  max-width: 140px;
+}
+
+.ma-text-center {
+  text-align: center;
 }

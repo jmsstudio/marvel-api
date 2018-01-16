@@ -14,8 +14,6 @@ class ComicsState {
         });
       })
       .catch(err => console.error('An error ocurred when loading data'));
-
-    //this.comicsList = [{ a: 1, b: 2 }, { a: 19, b: 2 }];
   }
 }
 
