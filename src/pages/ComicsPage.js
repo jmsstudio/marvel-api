@@ -18,7 +18,8 @@ class ComicsPage extends React.Component {
   render() {
     return (
       <div>
-        <h4>Comics</h4>
+        <h2>Comics</h2>
+        <hr />
         <ul className="ma-card-container">
           {this.store.comicsList.map((comic, idx) => {
             const onsaleDate = moment(

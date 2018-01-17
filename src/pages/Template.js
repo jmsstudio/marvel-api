@@ -6,21 +6,20 @@ function Template({ children }) {
   return (
     <div>
       <header className="ma-header">
-        <h2>Marvel API</h2>
+        <h1>Marvel API</h1>
       </header>
       <aside className="ma-menu">
-        <ul>
-          <li className="ma-menu-item">
-            <NavLink to="/" exact activeClassName="active">
-              Main
-            </NavLink>
-          </li>
-          <li className="ma-menu-item">
-            <NavLink to="/comics" exact activeClassName="active">
-              Comics
-            </NavLink>
-          </li>
-        </ul>
+        <div>
+          <NavLink to="/" exact activeClassName="active">
+            <div className="ma-menu-item">Main</div>
+          </NavLink>
+          <NavLink to="/characters" exact activeClassName="active">
+            <div className="ma-menu-item">Characters</div>
+          </NavLink>
+          <NavLink to="/comics" exact activeClassName="active">
+            <div className="ma-menu-item">Comics</div>
+          </NavLink>
+        </div>
       </aside>
       <main className="ma-app-container">{children}</main>
     </div>
