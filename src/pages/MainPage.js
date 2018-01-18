@@ -1,7 +1,12 @@
 import React from 'react';
 
 function MainPage() {
-  return <div>Main</div>;
+  return (
+    <div>
+      <h2>Marvel API Data</h2>
+      <hr />
+    </div>
+  );
 }
 
 export default MainPage;

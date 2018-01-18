@@ -66,8 +66,20 @@ body {
 
 .ma-card img {
   max-width: 140px;
+  height: 200px;
 }
 
 .ma-text-center {
+  text-align: center;
+}
+
+.ma-tiny {
+  height: 80px;
+}
+
+.ma-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-row-gap: 20px;
   text-align: center;
 }
