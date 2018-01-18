@@ -6,6 +6,9 @@ import MainPage from './pages/MainPage';
 import CharactersPage from './pages/CharactersPage';
 import ComicsPage from './pages/ComicsPage';
 
+//needed to compile sass to css
+import styles from './assets/styles/marvel-api.scss';
+
 function App() {
   return (
     <Router>

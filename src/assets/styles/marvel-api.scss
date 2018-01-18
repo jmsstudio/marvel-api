@@ -26,13 +26,13 @@ body {
   height: calc(100vh - 70px);
   position: fixed;
   left: 0;
-}
 
-.ma-menu-item {
-  line-height: 30px;
-  padding: 10px 25px;
-  border-left: 3px solid transparent;
-  border-radius: 0 15px 15px 0;
+  &-item {
+    line-height: 30px;
+    padding: 10px 25px;
+    border-left: 3px solid transparent;
+    border-radius: 0 15px 15px 0;
+  }
 }
 
 .active .ma-menu-item {
@@ -62,11 +62,10 @@ body {
   list-style: none;
   max-width: 20%;
   margin: 5px;
-}
-
-.ma-card img {
-  max-width: 140px;
-  height: 200px;
+  img {
+    max-width: 140px;
+    height: 200px;
+  }
 }
 
 .ma-text-center {
