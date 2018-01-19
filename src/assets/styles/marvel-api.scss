@@ -5,6 +5,27 @@ body {
   background: #fafafa;
 }
 
+input[type='text'] {
+  padding: 2px;
+  margin: 5px 0;
+  border-radius: 3px;
+  border: 1px solid #c9ccda;
+  height: 25px;
+}
+
+hr {
+  background-image: linear-gradient(
+    to left,
+    #eff2f7,
+    #c0ccda,
+    #c0ccda,
+    #eff2f7
+  );
+  border: 0;
+  height: 1px;
+  margin: 0 0 2rem 0;
+}
+
 .ma-header {
   position: fixed;
   left: 0;
@@ -81,4 +102,28 @@ body {
   grid-template-columns: repeat(5, 1fr);
   grid-row-gap: 20px;
   text-align: center;
+}
+
+.ma-full {
+  width: 100%;
+}
+
+.ma-mv--5 {
+  margin: 5px 0;
+}
+
+.ma-mb--10 {
+  margin-bottom: 10px;
+}
+
+.ma-mt--20 {
+  margin-top: 20px;
+}
+
+.ma-mh--5 {
+  margin: 0 5px;
+}
+
+.ma-pointer {
+  cursor: pointer;
 }

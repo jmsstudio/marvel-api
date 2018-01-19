@@ -29,9 +29,7 @@ const ComicsService = {
   loadCharacters(name = '') {
     const filterName = name ? `nameStartsWith=${name}` : '';
 
-    return axios.get(
-      `${BASE_URL}/${CHARACTERS_ENDPOINT}?${filterName}&orderBy=name&${this._generateAccessParams()}`
-    );
+    return axios.get(`${BASE_URL}/${CHARACTERS_ENDPOINT}?${filterName}&orderBy=name&${this._generateAccessParams()}`);
   },
 
   /**
@@ -40,13 +38,10 @@ const ComicsService = {
    * @param {number} characterId
    */
   loadComics(characterId) {
-    const timestamp = new Date().getTime();
-    const hash = md5(timestamp + API_PRIVATE_KEY + API_PUBLIC_KEY);
-
     return axios.get(
       `${BASE_URL}/${COMICS_ENDPOINT}?characters=${characterId}&orderBy=onsaleDate&${this._generateAccessParams()}`
     );
-  }
+  },
 };
 
 export default ComicsService;

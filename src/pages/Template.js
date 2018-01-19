@@ -27,7 +27,7 @@ function Template({ children }) {
 }
 
 Template.propTypes = {
-  children: PropTypes.any
+  children: PropTypes.any,
 };
 
 export default Template;
