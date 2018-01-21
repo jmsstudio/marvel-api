@@ -21,6 +21,10 @@ const ComicsService = {
     return `ts=${timestamp}&apikey=${API_PUBLIC_KEY}&hash=${hash}`;
   },
 
+  _generatePaginateParams(limit, offset) {
+    return `&limit=${limit}&offset=${offset}`;
+  },
+
   /**
    * Loads a list of characters whose name starts with the <code>name</code> (optional)
    *
@@ -37,9 +41,11 @@ const ComicsService = {
    *
    * @param {number} characterId
    */
-  loadComics(characterId) {
+  loadComics(characterId, limit = 20, offset = 0) {
+    const paginate = this._generatePaginateParams(limit, offset);
+
     return axios.get(
-      `${BASE_URL}/${COMICS_ENDPOINT}?characters=${characterId}&orderBy=onsaleDate&${this._generateAccessParams()}`
+      `${BASE_URL}/${COMICS_ENDPOINT}?characters=${characterId}&orderBy=onsaleDate&${this._generateAccessParams()}${paginate}`
     );
   },
 };

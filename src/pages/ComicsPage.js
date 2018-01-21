@@ -1,25 +1,47 @@
 import React from 'react';
 import { observer } from 'mobx-react';
+import { toJS } from 'mobx';
 import moment from 'moment';
 
 import ComicsState from '../stores/ComicsState';
 
+/* eslint-disable no-undef */
 @observer
 class ComicsPage extends React.Component {
   constructor(props) {
     super(props);
     this.store = ComicsState;
+    this.vn = null;
+    this._handleScroll = this._handleScroll.bind(this);
   }
 
   componentWillMount() {
     this.store.loadComics();
   }
 
+  componentDidMount() {
+    window.addEventListener('scroll', this._handleScroll);
+  }
+
+  _handleScroll(e) {
+    e.preventDefault();
+    const documentHeight = document.documentElement.offsetHeight;
+    const windowHeight = window.innerHeight;
+    const windowScroll = window.scrollY;
+    const totalScroll = windowScroll + windowHeight;
+
+    //when 20% near to bottom, loads more data
+    if (totalScroll > documentHeight - documentHeight * 0.2 && !this.store.isLoading) {
+      this.store.loadComics(true);
+    }
+  }
+
   render() {
     const defaultNoComicsMessage = <h4>No comics found for the selected character.</h4>;
     let hasData = true;
+    const comics = toJS(this.store.comicsList);
 
-    if (this.store.comicsList.length == 0 && !this.store.isLoading) {
+    if (comics.length == 0 && !this.store.isLoading) {
       hasData = false;
     }
 
@@ -34,6 +56,8 @@ class ComicsPage extends React.Component {
       );
     }
 
+    const loadingMessage = this.store.isLoading ? <i className="fa fa-spinner fa-pulse fa-3x fa-fw" /> : null;
+
     return (
       <div>
         <h2>Comics</h2>
@@ -42,7 +66,7 @@ class ComicsPage extends React.Component {
         {charImage}
 
         <ul className="ma-card-container">
-          {this.store.comicsList.map(comic => {
+          {comics.map(comic => {
             const onsaleDate = moment(comic.dates.find(d => d.type == 'onsaleDate').date);
 
             return (
@@ -62,6 +86,7 @@ class ComicsPage extends React.Component {
           })}
           {!hasData ? defaultNoComicsMessage : null}
         </ul>
+        <div className="ma-text-center">{loadingMessage}</div>
       </div>
     );
   }
