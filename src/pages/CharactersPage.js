@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 import _debounce from 'lodash/debounce';
 import { withRouter } from 'react-router-dom';
 
+/*import LazyImage from '../components/LazyImage';*/
 import ComicsState from '../stores/ComicsState';
 
 @observer

@@ -11,13 +11,22 @@ function Template({ children }) {
       <aside className="ma-menu">
         <div>
           <NavLink to="/" exact activeClassName="active">
-            <div className="ma-menu-item">Main</div>
-          </NavLink>
-          <NavLink to="/characters" exact activeClassName="active">
-            <div className="ma-menu-item">Characters</div>
+            <div className="ma-menu-item">
+              <i className="fa fa-fw fa-2x fa-users" />
+              <span>Characters</span>
+            </div>
           </NavLink>
           <NavLink to="/comics" exact activeClassName="active">
-            <div className="ma-menu-item">Comics</div>
+            <div className="ma-menu-item">
+              <i className="fa fa-fw fa-2x fa-book" />
+              <span>Comics</span>
+            </div>
+          </NavLink>
+          <NavLink to="/about" exact activeClassName="active">
+            <div className="ma-menu-item">
+              <i className="fa fa-fw fa-2x fa-info-circle" />
+              <span>About</span>
+            </div>
           </NavLink>
         </div>
       </aside>

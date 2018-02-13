@@ -3,6 +3,8 @@ import { observer } from 'mobx-react';
 import { toJS } from 'mobx';
 import moment from 'moment';
 
+//import LazyLoadHelper from '../components/LazyLoadHelper';
+import LazyImage from '../components/LazyImage';
 import ComicsState from '../stores/ComicsState';
 
 /* eslint-disable no-undef */
@@ -20,7 +22,11 @@ class ComicsPage extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this._handleScroll);
+    window.addEventListener('scroll', this._handleScroll, true);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._handleScroll);
   }
 
   _handleScroll(e) {
@@ -73,13 +79,16 @@ class ComicsPage extends React.Component {
               <li key={comic.id} className="ma-card">
                 <h5>{comic.title}</h5>
                 <div className="ma-text-center">
-                  <img src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt="Comic thumbnail" />
+                  {/*<LazyLoadHelper>*/}
+                  <LazyImage src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt="Comic thumbnail" />
+                  {/*<img src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt="Comic thumbnail" />*/}
+                  {/*</LazyLoadHelper>*/}
                 </div>
                 <div>
                   Released date: <small>{onsaleDate.isValid() ? onsaleDate.format('DD/MM/YYYY') : '-'}</small>
                 </div>
-                <p>
-                  <strong>Description:</strong> {comic.description || '-'}
+                <p className="container">
+                  <strong>Description:</strong> <span>{comic.description || '-'}</span>
                 </p>
               </li>
             );

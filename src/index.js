@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+import 'regenerator-runtime/runtime';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
