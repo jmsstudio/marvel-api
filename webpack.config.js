@@ -1,28 +1,72 @@
+/* eslint-disable */
 const path = require('path');
 const webpack = require('webpack');
+const cssnano = require('cssnano');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const OptmizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const ENV = process.env.NODE_ENV || 'development';
+
+const isProd = ENV == 'production';
+
+const plugins = [];
+
+if (isProd) {
+  plugins.push(
+    new OptmizeCssAssetsPlugin({
+      cssProcessor: cssnano,
+      cssProcessorOptions: {
+        discardComments: {
+          removeAll: true,
+        },
+      },
+    })
+  );
+
+  plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
+}
+
+plugins.push(new CleanWebpackPlugin(['dist']));
+plugins.push(
+  new HtmlWebpackPlugin({
+    minify: {
+      html5: true,
+      collapseWhitespace: true,
+      removeComments: true,
+    },
+    template: path.join(__dirname, 'src/index.html'),
+    filename: 'index.html',
+    inject: 'body',
+  })
+);
+plugins.push(new ExtractTextWebpackPlugin({ filename: 'css/styles.css', allChunks: true }));
+plugins.push(
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'vendor',
+    filename: 'vendor.bundle.js',
+  })
+);
 
 module.exports = {
   entry: {
     application: './src/index.js',
+    vendor: [
+      'react',
+      'react-dom',
+      'react-router',
+      'react-router-dom',
+      'moment',
+      'mobx',
+      'mobx-react',
+      'lodash',
+      'crypto-js',
+      'axios',
+    ],
   },
-  plugins: [
-    new CleanWebpackPlugin(['dist']),
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src/index.html'),
-      filename: 'index.html',
-      inject: 'body',
-    }),
-    new ExtractTextWebpackPlugin({ filename: 'css/styles.css', allChunks: true }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'commons',
-    }),
-  ],
+  plugins: plugins,
   resolve: {
     alias: {
       config: path.join(__dirname, 'src/config', ENV),
