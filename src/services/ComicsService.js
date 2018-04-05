@@ -30,10 +30,13 @@ const ComicsService = {
    *
    * @param {string} name
    */
-  loadCharacters(name = '') {
+  loadCharacters(name = '', limit = 20, offset = 0) {
     const filterName = name ? `nameStartsWith=${name}` : '';
+    const paginate = this._generatePaginateParams(limit, offset);
 
-    return axios.get(`${BASE_URL}/${CHARACTERS_ENDPOINT}?${filterName}&orderBy=name&${this._generateAccessParams()}`);
+    return axios.get(
+      `${BASE_URL}/${CHARACTERS_ENDPOINT}?${filterName}&orderBy=name&${this._generateAccessParams()}${paginate}`
+    );
   },
 
   /**

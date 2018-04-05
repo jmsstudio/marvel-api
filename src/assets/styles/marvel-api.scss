@@ -29,6 +29,11 @@ hr {
   margin: 0 0 2rem 0;
 }
 
+ul {
+  list-style: none;
+  padding-left: 5px;
+}
+
 .ma-header {
   position: fixed;
   left: 0;
@@ -72,7 +77,21 @@ hr {
   }
 }
 
+.ma-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-row-gap: 20px;
+  text-align: center;
+}
+
 @media (min-width: 720px) {
+  .ma-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-row-gap: 20px;
+    text-align: center;
+  }
+
   .ma-header > h1 {
     font-size: 2em;
     padding: 0 0;
@@ -116,6 +135,7 @@ hr {
 
 .ma-app-container {
   margin-top: 115px;
+  margin-bottom: 30px;
 }
 
 .ma-card-container {
@@ -128,6 +148,7 @@ hr {
 .ma-card {
   list-style: none;
   width: 20%;
+  min-width: 150px;
   margin: 5px;
   height: 100%;
   img {
@@ -142,13 +163,6 @@ hr {
 
 .ma-tiny {
   height: 80px;
-}
-
-.ma-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-row-gap: 20px;
-  text-align: center;
 }
 
 .ma-full {
@@ -173,4 +187,18 @@ hr {
 
 .ma-pointer {
   cursor: pointer;
+}
+
+.ma-app-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: 100%;
+  height: 20px;
+  z-index: 99;
+  background-color: #000;
+  color: #eee;
+  font-weight: 900;
+  text-align: center;
 }

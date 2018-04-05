@@ -14,11 +14,19 @@ class ComicsState {
   };
   @observable charactersList = [];
   @observable comicsList = [];
-  @observable isLoading = false;
+  @observable isLoadingComics = false;
+  @observable isLoadingCharacters = false;
   @observable
-  paginateConfig = {
+  characterPaginateConfig = {
     offset: 0,
-    limit: 20,
+    limit: 40,
+    total: 999,
+    count: 0,
+  };
+  @observable
+  comicPaginateConfig = {
+    offset: 0,
+    limit: 40,
     total: 999,
     count: 0,
   };
@@ -26,19 +34,19 @@ class ComicsState {
   @action
   loadComics(append = false) {
     const DEFAULT_OFFSET = 20;
-    this.isLoading = true;
+    this.isLoadingComics = true;
 
-    let limit = this.paginateConfig.limit;
-    let offset = this.paginateConfig.offset;
+    let limit = this.comicPaginateConfig.limit;
+    let offset = this.comicPaginateConfig.offset;
     let shouldLoad = true;
 
     if (append) {
-      limit = this.paginateConfig.limit;
-      offset = this.paginateConfig.count + this.paginateConfig.offset + 1;
+      limit = this.comicPaginateConfig.limit;
+      offset = this.comicPaginateConfig.count + this.comicPaginateConfig.offset + 1;
 
-      if (offset < DEFAULT_OFFSET || this.paginateConfig.count == 0) {
+      if (offset < DEFAULT_OFFSET || this.comicPaginateConfig.count == 0) {
         shouldLoad = false;
-        this.isLoading = false;
+        this.isLoadingComics = false;
       }
     }
 
@@ -46,13 +54,13 @@ class ComicsState {
       ComicsService.loadComics(this.selectedCharacter.id, limit, offset)
         .then(res => {
           runInAction('Loading comics', () => {
-            this.isLoading = false;
+            this.isLoadingComics = false;
             if (append) {
               res.data.data.results.forEach(comic => this.comicsList.push(comic));
             } else {
               this.comicsList = res.data.data.results;
             }
-            this.paginateConfig = {
+            this.comicPaginateConfig = {
               offset: res.data.data.offset > 0 ? res.data.data.offset - 1 : 0,
               limit: res.data.data.limit,
               total: res.data.data.total,
@@ -60,19 +68,59 @@ class ComicsState {
             };
           });
         })
-        .catch(err => console.error('An error ocurred when loading data: ', err));
+        .catch(err => {
+          runInAction('Loading comics', () => {
+            this.isLoadingComics = false;
+          });
+          console.error('An error ocurred when loading data: ', err);
+        });
     }
   }
 
   @action
-  loadCharacters() {
-    ComicsService.loadCharacters(this.searchName)
-      .then(res => {
-        runInAction('Loading characters', () => {
-          this.charactersList = res.data.data.results;
+  loadCharacters(append = false) {
+    const DEFAULT_OFFSET = 20;
+    this.isLoadingCharacters = true;
+
+    let limit = this.characterPaginateConfig.limit;
+    let offset = this.characterPaginateConfig.offset;
+    let shouldLoad = true;
+
+    if (append) {
+      limit = this.characterPaginateConfig.limit;
+      offset = this.characterPaginateConfig.count + this.characterPaginateConfig.offset + 1;
+
+      if (offset < DEFAULT_OFFSET || this.characterPaginateConfig.count == 0) {
+        shouldLoad = false;
+        this.isLoadingCharacters = false;
+      }
+    }
+
+    if (shouldLoad) {
+      ComicsService.loadCharacters(this.searchName, limit, offset)
+        .then(res => {
+          runInAction('Loading characters', () => {
+            this.isLoadingCharacters = false;
+            if (append) {
+              res.data.data.results.forEach(char => this.charactersList.push(char));
+            } else {
+              this.charactersList = res.data.data.results;
+            }
+            this.characterPaginateConfig = {
+              offset: res.data.data.offset > 0 ? res.data.data.offset - 1 : 0,
+              limit: res.data.data.limit,
+              total: res.data.data.total,
+              count: res.data.data.count,
+            };
+          });
+        })
+        .catch(err => {
+          runInAction('Loading characters', () => {
+            this.isLoadingCharacters = false;
+          });
+          console.error('An error ocurred when loading data: ', err);
         });
-      })
-      .catch(err => console.error('An error ocurred when loading data: ', err));
+    }
   }
 
   @action
@@ -88,9 +136,9 @@ class ComicsState {
 
   @action
   _resetPagination() {
-    this.paginateConfig = {
+    this.characterPaginateConfig = {
       offset: 0,
-      limit: 20,
+      limit: 40,
       total: 999,
       count: 0,
     };
