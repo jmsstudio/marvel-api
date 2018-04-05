@@ -1623,7 +1623,7 @@ module.exports = {
   marvelApi: {
     privateKey: '7311d2dda779f046d3ce454fbc2d9ff08c134aa6',
     publicKey: 'b286fcfc7594db80b7b2bf5af4869c49',
-    baseUrl: 'http://gateway.marvel.com/v1/public',
+    baseUrl: 'https://gateway.marvel.com/v1/public',
     endpoints: {
       characters: 'characters',
       comics: 'comics'
