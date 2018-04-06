@@ -1,12 +1,12 @@
 webpackJsonp([0],{
 
-/***/ 186:
+/***/ 187:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(187);
+__webpack_require__(188);
 
 var _react = __webpack_require__(2);
 
@@ -16,7 +16,7 @@ var _reactDom = __webpack_require__(19);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _App = __webpack_require__(198);
+var _App = __webpack_require__(199);
 
 var _App2 = _interopRequireDefault(_App);
 
@@ -29,7 +29,7 @@ _reactDom2.default.render(_react2.default.createElement(_App2.default, null), ro
 
 /***/ }),
 
-/***/ 187:
+/***/ 188:
 /***/ (function(module, exports) {
 
 /**
@@ -763,7 +763,7 @@ _reactDom2.default.render(_react2.default.createElement(_App2.default, null), ro
 
 /***/ }),
 
-/***/ 198:
+/***/ 199:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -778,6 +778,10 @@ var _react = __webpack_require__(2);
 var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(20);
+
+var _createHashHistory = __webpack_require__(41);
+
+var _createHashHistory2 = _interopRequireDefault(_createHashHistory);
 
 var _Template = __webpack_require__(207);
 
@@ -799,12 +803,18 @@ var _marvelApi = __webpack_require__(240);
 
 var _marvelApi2 = _interopRequireDefault(_marvelApi);
 
+__webpack_require__(241);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//needed to compile sass to css
+/* eslint-disable no-unused-vars */
+var history = (0, _createHashHistory2.default)();
 
 function App() {
   return _react2.default.createElement(
-    _reactRouterDom.BrowserRouter,
-    null,
+    _reactRouterDom.Router,
+    { history: history },
     _react2.default.createElement(
       _Template2.default,
       null,
@@ -815,8 +825,6 @@ function App() {
   );
 }
 
-//needed to compile sass to css
-/* eslint-disable no-unused-vars */
 exports.default = App;
 
 /***/ }),
@@ -1055,21 +1063,21 @@ var _mobxReact = __webpack_require__(29);
 
 var _mobx = __webpack_require__(16);
 
-var _debounce2 = __webpack_require__(47);
+var _debounce2 = __webpack_require__(48);
 
 var _debounce3 = _interopRequireDefault(_debounce2);
 
 var _reactRouterDom = __webpack_require__(20);
 
-var _ComicsState = __webpack_require__(51);
+var _ComicsState = __webpack_require__(52);
 
 var _ComicsState2 = _interopRequireDefault(_ComicsState);
 
-var _LazyImage = __webpack_require__(58);
+var _LazyImage = __webpack_require__(59);
 
 var _LazyImage2 = _interopRequireDefault(_LazyImage);
 
-var _Scrollable = __webpack_require__(59);
+var _Scrollable = __webpack_require__(60);
 
 var _Scrollable2 = _interopRequireDefault(_Scrollable);
 
@@ -1229,7 +1237,7 @@ exports.default = (0, _reactRouterDom.withRouter)(CharactersPage);
 /***/ 210:
 /***/ (function(module, exports, __webpack_require__) {
 
-var root = __webpack_require__(49);
+var root = __webpack_require__(50);
 
 /**
  * Gets the timestamp of the number of milliseconds that have elapsed since
@@ -1271,7 +1279,7 @@ module.exports = freeGlobal;
 /***/ 212:
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(48),
+var isObject = __webpack_require__(49),
     isSymbol = __webpack_require__(213);
 
 /** Used as references for various `Number` constants. */
@@ -1380,7 +1388,7 @@ module.exports = isSymbol;
 /***/ 214:
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(50),
+var Symbol = __webpack_require__(51),
     getRawTag = __webpack_require__(215),
     objectToString = __webpack_require__(216);
 
@@ -1415,7 +1423,7 @@ module.exports = baseGetTag;
 /***/ 215:
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(50);
+var Symbol = __webpack_require__(51);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -1540,7 +1548,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _axios = __webpack_require__(52);
+var _axios = __webpack_require__(53);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -1659,15 +1667,15 @@ var _moment = __webpack_require__(0);
 
 var _moment2 = _interopRequireDefault(_moment);
 
-var _LazyImage = __webpack_require__(58);
+var _LazyImage = __webpack_require__(59);
 
 var _LazyImage2 = _interopRequireDefault(_LazyImage);
 
-var _ComicsState = __webpack_require__(51);
+var _ComicsState = __webpack_require__(52);
 
 var _ComicsState2 = _interopRequireDefault(_ComicsState);
 
-var _Scrollable = __webpack_require__(59);
+var _Scrollable = __webpack_require__(60);
 
 var _Scrollable2 = _interopRequireDefault(_Scrollable);
 
@@ -1831,10 +1839,17 @@ exports.default = ComicsPage;
 
 /***/ }),
 
-/***/ 47:
+/***/ 241:
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(48),
+module.exports = __webpack_require__.p + "favicon.ico";
+
+/***/ }),
+
+/***/ 48:
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__(49),
     now = __webpack_require__(210),
     toNumber = __webpack_require__(212);
 
@@ -2028,7 +2043,7 @@ module.exports = debounce;
 
 /***/ }),
 
-/***/ 48:
+/***/ 49:
 /***/ (function(module, exports) {
 
 /**
@@ -2066,7 +2081,7 @@ module.exports = isObject;
 
 /***/ }),
 
-/***/ 49:
+/***/ 50:
 /***/ (function(module, exports, __webpack_require__) {
 
 var freeGlobal = __webpack_require__(211);
@@ -2082,10 +2097,10 @@ module.exports = root;
 
 /***/ }),
 
-/***/ 50:
+/***/ 51:
 /***/ (function(module, exports, __webpack_require__) {
 
-var root = __webpack_require__(49);
+var root = __webpack_require__(50);
 
 /** Built-in value references. */
 var Symbol = root.Symbol;
@@ -2095,7 +2110,7 @@ module.exports = Symbol;
 
 /***/ }),
 
-/***/ 51:
+/***/ 52:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2370,7 +2385,7 @@ exports.default = new ComicsState();
 
 /***/ }),
 
-/***/ 58:
+/***/ 59:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2390,7 +2405,7 @@ var _reactDom = __webpack_require__(19);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _debounce2 = __webpack_require__(47);
+var _debounce2 = __webpack_require__(48);
 
 var _debounce3 = _interopRequireDefault(_debounce2);
 
@@ -2475,7 +2490,7 @@ exports.default = LazyImage;
 
 /***/ }),
 
-/***/ 59:
+/***/ 60:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2560,4 +2575,4 @@ exports.default = Scrollable;
 
 /***/ })
 
-},[186]);
+},[187]);
