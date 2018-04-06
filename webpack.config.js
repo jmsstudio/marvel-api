@@ -40,6 +40,7 @@ plugins.push(
     template: path.join(__dirname, 'src/index.html'),
     filename: 'index.html',
     inject: 'body',
+    favicon: 'src/assets/images/favicon.ico',
   })
 );
 plugins.push(new ExtractTextWebpackPlugin({ filename: 'css/styles.css', allChunks: true }));
@@ -98,6 +99,7 @@ module.exports = {
         test: /\.scss$/,
         loader: ExtractTextWebpackPlugin.extract('css-loader!sass-loader'),
       },
+      { test: /\.(jpe?g|png|gif|ico)$/i, loader: 'file-loader?name=[name].[ext]' },
     ],
   },
 };

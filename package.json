@@ -4,7 +4,7 @@
   "description": "A react front-end for dealing with marvel-api",
   "repository": "git@github.com:jmsstudio/marvel-api.git",
   "scripts": {
-    "dev": "yarn format && webpack-dev-server",
+    "dev": "npm run format && webpack-dev-server --https",
     "build": "webpack --progress --colors --env.dev",
     "build:prod": "NODE_ENV=production webpack --progress --colors --env.dev",
     "lint": "eslint src",
@@ -43,6 +43,7 @@
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.6.1",
     "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.11",
     "html-webpack-plugin": "^2.30.1",
     "node-sass": "^4.8.3",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
