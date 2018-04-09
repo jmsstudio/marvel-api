@@ -7,6 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const OptmizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const BabelMinifyPlugin = require("babel-minify-webpack-plugin");
 
 const ENV = process.env.NODE_ENV || 'development';
 
@@ -27,6 +28,7 @@ if (isProd) {
   );
 
   plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
+  plugins.push(new BabelMinifyPlugin());
 }
 
 plugins.push(new CleanWebpackPlugin(['dist']));

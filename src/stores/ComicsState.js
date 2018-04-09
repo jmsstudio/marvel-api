@@ -36,8 +36,8 @@ class ComicsState {
     const DEFAULT_OFFSET = 20;
     this.isLoadingComics = true;
 
-    let limit = this.comicPaginateConfig.limit;
-    let offset = this.comicPaginateConfig.offset;
+    let limit = 40;
+    let offset = 0;
     let shouldLoad = true;
 
     if (append) {
@@ -82,8 +82,8 @@ class ComicsState {
     const DEFAULT_OFFSET = 20;
     this.isLoadingCharacters = true;
 
-    let limit = this.characterPaginateConfig.limit;
-    let offset = this.characterPaginateConfig.offset;
+    let limit = 40;
+    let offset = 0;
     let shouldLoad = true;
 
     if (append) {
